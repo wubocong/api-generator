@@ -16,7 +16,7 @@ export default {`
 const list = Array.from(dom.window.document.querySelectorAll('.opblock-tag-section .opblock'))
 list.forEach((item) => {
   const method = item.querySelector('.opblock-summary-method').textContent
-  const apiPath = item.querySelector('.opblock-summary-path').dataset.path
+  const apiPath = item.querySelector('.opblock-summary-path').dataset.path.replace('/v1', '')
   let params = 'params';
   let finalPath = ''
   if (method === 'GET') {
@@ -33,4 +33,4 @@ list.forEach((item) => {
 })
 code += '}'
 
-fs.writeFileSync('result.js', prettier.format(code, { semi: false, tabWidth: 2, trailingComma: 'none', printWidth: 140 }))
+fs.writeFileSync('result.js', prettier.format(code, { semi: false, tabWidth: 2, trailingComma: 'none', printWidth: 140, singleQuote: true }))
